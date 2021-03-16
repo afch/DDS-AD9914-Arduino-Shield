@@ -36,7 +36,7 @@ ClickButton modeButton (MODE_PIN, LOW, CLICKBTN_PULLUP);
 //ClickButton downButton (DOWN_PIN, LOW, CLICKBTN_PULLUP);
 //ClickButton upButton (UP_PIN, LOW, CLICKBTN_PULLUP);
 
-Encoder myEnc(18, 19);
+Encoder myEnc(19, 18);
 
 ScrollingText stTooHighFreq("Too HIGH Freq. > "+String(trunc((ui32HIGH_FREQ_LIMIT)/float(1E8))/10.0, 1)+" GHz", 10, 150);
 ScrollingText stTooLowFreq("Too LOW Freq. < "+String((LOW_FREQ_LIMIT)/float(1E3), 0)+" kHz", 10, 150);
@@ -52,7 +52,7 @@ void setup() {
 
   Serial.begin(115200);
 
-  Serial.println(F("DDS AD9910 Arduino Shield by GRA & AFCH. (gra-afch.com)"));
+  Serial.println(F("DDS AD9914 Arduino Shield by GRA & AFCH. (gra-afch.com)"));
   Serial.print(F("Firmware v.:"));
   Serial.println(FIRMWAREVERSION);
 

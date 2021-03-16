@@ -312,7 +312,7 @@ public:
 				break;
 		}
 		
-		if (isStateChanged)
+		/*if (isStateChanged)
 		{
 			int acceleration=0;
 			arg->delta_t=millis()-arg->lastTimeStateChanged;
@@ -324,6 +324,11 @@ public:
 			if (increment>0) multiplier=1;
 			if (increment<0) multiplier=-1;
 			arg->position=arg->position+increment+multiplier*acceleration;
+		}*/
+		
+		if (isStateChanged)
+		{
+			arg->position=arg->position+increment;
 		}
 		
 //#endif
