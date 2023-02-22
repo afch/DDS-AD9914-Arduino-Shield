@@ -1,5 +1,5 @@
 # DDS-AD9914-Arduino-Shield
-DDS (Direct Digital Synthesis) Analog Devices AD9959 Arduino Shield by GRA &amp; AFCH
+DDS (Direct Digital Synthesis) Analog Devices AD9914/AD9915 Arduino Shield by GRA &amp; AFCH
 
 Web-site: https://gra-afch.com
 Direct link to category:  https://gra-afch.com/product-category/rf-units/
@@ -12,7 +12,7 @@ Direct link to category:  https://gra-afch.com/product-category/rf-units/
 
 "Libraries" - contains libraries that are only needed for compilation: place them to "C:\Users\[USER]\Documents\Arduino\libraries", where [USER] - your windows username.
 
-This AD9959 Shield can be easily connected to Arduino Mega without additional wires and converters. All functions of the DDS AD9914 are brought to the contacts of the Arduino Mega thanks to this you can fully reveal all the capabilities of the DDS AD9914.
+This AD9959 Shield can be easily connected to Arduino Mega without additional wires and converters. All functions of the DDS AD9914/AD9915 are brought to the contacts of the Arduino Mega thanks to this you can fully reveal all the capabilities of the DDS AD9914/AD9915.
 
 Key Benefits:
 
@@ -35,8 +35,8 @@ Key Benefits:
 * The software allows you to select and configure the frequency of the clock generator through the user menu (without the need to recompile the program).
 * Any settings can be stored in non-volatile EEPROM memory (located at Arduino Mega).
 * Basic settings are applied and saved automatically.
-* This shield support overclocking the AD9914 core up to 4000 MHz.
-* DDS AD9914 Shield has ability to generate a signal up to 1999 MHz.
+* This shield support overclocking the AD9914/AD9915 core up to 4000 MHz.
+* DDS AD9914/AD9915 Shield has ability to generate a signal up to 1999 MHz.
 
 # Switching a clock source is made by next components:
 <pre>
