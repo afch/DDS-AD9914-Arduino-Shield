@@ -6,11 +6,22 @@
 #include <ClickButton.h>
 //#include <Encoder_GA_E/Encoder.h>
 #include <Encoder.h>
+#ifndef GRA_AND_AFCH_ENCODER_MOD3 
+  #error The "Encoder" library v3 modified by GRA and AFCH must be used!
+#endif
 #include <SPI.h>
 #include "AD9914.h"
 #include <EEPROM.h>
 
-#define FIRMWAREVERSION 0.8 //27.09.2020
+#include <AsyncStream.h>
+AsyncStream<20> serialbuffer(&Serial, '\n');
+#include <GParser.h>
+
+#define FIRMWAREVERSION 0.82 
+//v0.82 06.06.2023 
+//Добавление поддержки комманд через последовательный порт
+//Обновлена библиотека энкодера до версии 3, для более стабильной работы
+//v0.81 08.04.2021 Обновление библиотеки Encoder
 //v.0.8 24.09.2020 Добавляем сохранение всех параметров в EEPROM
 //v.0.7 23.09.2020 Внедряем управление DDS
 //v.0.6 22.09.2020 Добавлены ограничение и проверка при установке внешней частоты тактирования
@@ -130,6 +141,7 @@ long oldPosition  = 0;
 
 void loop() {
   // put your main code here, to run repeatedly:
+  ReadSerialCommands();
   int curPos=0;
   curPos=myEnc.read();
   
