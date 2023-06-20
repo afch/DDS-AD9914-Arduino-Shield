@@ -13,11 +13,11 @@
 #include "AD9914.h"
 #include <EEPROM.h>
 
-#include <AsyncStream.h>
-AsyncStream<20> serialbuffer(&Serial, '\n');
 #include <GParser.h>
 
-#define FIRMWAREVERSION 0.82 
+#define FIRMWAREVERSION 0.83
+//v0.83 20.06.2023
+//ускорена обработка комманд переданных через последвоательный порт 
 //v0.82 06.06.2023 
 //Добавление поддержки комманд через последовательный порт
 //Обновлена библиотека энкодера до версии 3, для более стабильной работы
