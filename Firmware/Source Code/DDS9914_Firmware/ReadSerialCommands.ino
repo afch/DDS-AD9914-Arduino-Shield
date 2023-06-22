@@ -7,6 +7,8 @@ const char HELP_STRING [] PROGMEM =
           "P - Set Output Power in dBm (-68 - 0)\n"
           "M - Get Model\n"
           "V - Get Firmware Version\n"
+          "E - Enable Output\n"
+          "D - Disable Output\n"
           "h - This Help\n"
           "; - Commands Separator"
           "\n"
@@ -57,6 +59,18 @@ void ReadSerialCommands()
           Serial.println(value);
           Amplitude.value = -1 * value;
         } else Serial.println("Power is OUT OF RANGE (-" + String(Amplitude.maxValue) + " - " + String(Amplitude.minValue) + ")");
+      break;
+
+      case 'D': 
+        Serial.println(F("Output Disabled"));
+        digitalWrite(EXT_PWR_DWN, HIGH);
+        isPWR_DWN = true;
+      break;
+
+      case 'E': 
+        Serial.println(F("Output Enabled"));
+        digitalWrite(EXT_PWR_DWN, LOW);
+        isPWR_DWN = false;
       break;
 
       case 'V': //Firmware Version request

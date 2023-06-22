@@ -17,7 +17,9 @@ void DisplayMenu(uint8_t menuType) //menuType {MAIN_MENU=0, CORE_CLOCK_MENU=1}
       display.setTextColor(WHITE); // Draw white text
       display.setCursor(0, 16);     // Start at top-left corner
 
-      display.println(F("Frequency, [Hz]:"));
+      display.print(F("Frequency, [Hz]:"));
+      if (isPWR_DWN) display.print(F(" OFF"));
+        //else display.print(F("    "));
 
       display.drawPixel(11, 39, WHITE); //
       display.drawPixel(11, 40, WHITE); //

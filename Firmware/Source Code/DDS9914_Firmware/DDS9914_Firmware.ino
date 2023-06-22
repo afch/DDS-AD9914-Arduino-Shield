@@ -15,7 +15,9 @@
 
 #include <GParser.h>
 
-#define FIRMWAREVERSION 0.83
+#define FIRMWAREVERSION 0.84
+//v0.84 22.06.2023 
+//Добавленны комнады вклчения и отключения выходов
 //v0.83 20.06.2023
 //ускорена обработка комманд переданных через последвоательный порт 
 //v0.82 06.06.2023 
@@ -38,6 +40,8 @@ uint32_t ui32HIGH_FREQ_LIMIT=DDS_Core_Clock/2;
 uint32_t ui32CurrentOutputFreq=0;
 
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &Wire, -1, 800000UL, 800000UL);
+
+bool isPWR_DWN = false;
 
 #define MODE_PIN 2    //A0
 //#define DOWN_PIN     A1
