@@ -64,6 +64,8 @@ Starting with version 1.02, the ability to control via the serial port has been 
   P - Set Output Power in dBm (-68 - 0)  
   M - Get Model  
   V - Get Firmware Version  
+  E - Enable Output  
+  D - Disable Output  
   h - Help  
   ; - Commands Separator  
           
