@@ -58,7 +58,7 @@ Key Benefits:
 Where V means that the component must be installed (soldered), and X - means that the component must be removed
 
 # List of Serial Port Commands:
-Starting with version 1.02, the ability to control via the serial port has been added.
+Starting with version 0.82, the ability to control via the serial port has been added.
 
   F - Set Frequency in Hz (100000 - CoreFrequency/2)  
   P - Set Output Power in dBm (-68 - 0)  
