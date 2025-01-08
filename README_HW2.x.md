@@ -31,8 +31,9 @@ Key Benefits:
 * High-speed decoupling Level converter and TTL 5V matching
 * one of these types of clock source can be used/installed:
 
-1. TCXO - 5 - 50 Mhz 1ppm external oscillator PLLz,
-2. REF CLK IN - external generator 500 MHz to 4000 MHz
+1. Onboard TCXO/OCXO - 5 - 50 MHz 1ppm (PLL),
+2. External TCXO/OCXO - 5 - 50 MHz (PLL)
+3. External oscillator - 500 MHz to 4000 MHz (REF CLK IN)
 
 
 * Easy to connect OLED display.
