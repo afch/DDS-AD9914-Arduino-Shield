@@ -31,9 +31,8 @@ Key Benefits:
 * High-speed decoupling Level converter and TTL 5V matching
 * one of these types of clock source can be used/installed:
 
-1. Onboard TCXO/OCXO - 5 - 50 MHz 1ppm (PLL),
-2. External TCXO/OCXO - 5 - 50 MHz (PLL)
-3. External oscillator - 500 MHz to 4000 MHz (REF CLK IN)
+1. TCXO - 5 - 50 Mhz 1ppm external oscillator PLLz,
+2. REF CLK IN - external generator 500 MHz to 4000 MHz
 
 
 * Easy to connect OLED display.
@@ -45,8 +44,18 @@ Key Benefits:
 * This shield support overclocking the AD9914/AD9915 core up to 4000 MHz.
 * DDS AD9914/AD9915 Shield has ability to generate a signal up to 1999 MHz.
 
-# The switching of clock sources:
-The switching of clock sources is performed through the clock menu and is handled by an onboard software-controlled switch. It does not require the installation or removal of any components on the board to switch between clock sources: TCXO/OCXO, External TCXO/OCXO or External Oscillator.
+# Switching a clock source is made by next components:
+<pre>
+|-------------------------------|-----------------------------------|-----------------|
+|      Clock source             |            Capacitors             |    Resistors    |
+|   (only one at a time)        | C20  |  C22  |  C18,C19 | C14,C17 |  XTAL | REF_CLK |
+|-------------------------------------------------------------------------------------|
+| TCXO - Oscillator 1ppm (Z2)   |  V   |   X   |    X     |    V    |   X   |    V    |
+| REF CLK - External Generator  |  X   |   X   |    X     |    V    |   X   |    V    |
+|-------------------------------------------------------------------------------------|
+</pre>
+
+Where V means that the component must be installed (soldered), and X - means that the component must be removed
 
 # List of Serial Port Commands:
 Starting with version 0.82, the ability to control via the serial port has been added.
