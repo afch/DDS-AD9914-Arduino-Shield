@@ -11,4 +11,4 @@ Web-site: https://gra-afch.com
 Direct link to category:  https://gra-afch.com/product-category/rf-units/
 
 [HARDWARE Version 2.x:](https://github.com/afch/DDS-AD9914-Arduino-Shield/blob/main/README_HW2.x.md)  
-[HARDWARE Version 3.x:](https://github.com/afch/DDS-AD9914-Arduino-Shield/blob/main/README_HW3.x.md))  
+[HARDWARE Version 3.x:](https://github.com/afch/DDS-AD9914-Arduino-Shield/blob/main/README_HW3.x.md)  
