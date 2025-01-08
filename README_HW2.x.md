@@ -45,7 +45,7 @@ Key Benefits:
 * DDS AD9914/AD9915 Shield has ability to generate a signal up to 1999 MHz.
 
 # The switching of clock sources:
-The switching of clock sources is performed through the clock menu and is handled by an onboard software-controlled switch. It does not require installing or removing any components on the board to switch between any clock sources
+The switching of clock sources is performed through the clock menu and is handled by an onboard software-controlled switch. It does not require the installation or removal of any components on the board to switch between clock sources: TCXO/OCXO, External TCXO/OCXO or External Oscillator.
 
 # List of Serial Port Commands:
 Starting with version 0.82, the ability to control via the serial port has been added.
