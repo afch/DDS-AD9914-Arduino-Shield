@@ -10,6 +10,12 @@ The firmware is the same for AD9914 and AD9915 except for the inscription on the
 Web-site: https://gra-afch.com
 Direct link to category:  https://gra-afch.com/product-category/rf-units/
 
+# What's New in Version 3
+* A software-controlled clock source switch has been added.
+* Voltage monitoring of the power supply has been added (acceptable range: 10 to 14 volts).
+* An "Output on/off" button has been added to enable and disable the output signal.
+* A LED indicator for the PLL lock has been added.
+
 # GA_Flasher can be used to upload compiled firmware from "Firmware Compiled (.HEX File)" folder: https://github.com/afch/GA_Flasher
 
 "Firmware Compiled (.HEX File)" - folder contains pre-Compiled firmware (.HEX File), that can be uploaded via "AvrDude", GA_Flasher or any other software for flashing Atmega 2560
@@ -35,7 +41,6 @@ Key Benefits:
 2. External TCXO/OCXO - 5 - 50 MHz (PLL)
 3. External oscillator - 500 MHz to 4000 MHz (REF CLK IN)
 
-
 * Easy to connect OLED display.
 * Convenient and fast control with an encoder
 * The synthesizer is capable to generate sine wave.
@@ -44,13 +49,6 @@ Key Benefits:
 * Basic settings are applied and saved automatically.
 * This shield support overclocking the AD9914/AD9915 core up to 4000 MHz.
 * DDS AD9914/AD9915 Shield has ability to generate a signal up to 1999 MHz.
-
-# What's New in Version 3
-* A software-controlled clock source switch has been added.
-* Voltage monitoring of the power supply has been added (acceptable range: 10 to 14 volts).
-* An "Output on/off" button has been added to enable and disable the output signal.
-* A LED indicator for the PLL lock has been added.
-
 
 # The switching of clock sources:
 The switching of clock sources is performed through the clock menu and is handled by an onboard software-controlled switch. It does not require the installation or removal of any components on the board to switch between clock sources: TCXO/OCXO, External TCXO/OCXO or External Oscillator.
