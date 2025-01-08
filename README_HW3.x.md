@@ -45,6 +45,13 @@ Key Benefits:
 * This shield support overclocking the AD9914/AD9915 core up to 4000 MHz.
 * DDS AD9914/AD9915 Shield has ability to generate a signal up to 1999 MHz.
 
+# What's New in Version 3
+* A software-controlled clock source switch has been added.
+* Voltage monitoring of the power supply has been added (acceptable range: 10 to 14 volts).
+* An "Output on/off" button has been added to enable and disable the output signal.
+* A LED indicator for the PLL lock has been added.
+
+
 # The switching of clock sources:
 The switching of clock sources is performed through the clock menu and is handled by an onboard software-controlled switch. It does not require the installation or removal of any components on the board to switch between clock sources: TCXO/OCXO, External TCXO/OCXO or External Oscillator.
 
