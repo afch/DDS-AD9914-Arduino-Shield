@@ -15,6 +15,7 @@ Direct link to category:  https://gra-afch.com/product-category/rf-units/
 * Voltage monitoring of the power supply has been added (acceptable range: 10 to 14 volts).
 * An "Output on/off" button has been added to enable and disable the output signal.
 * A LED indicator for the PLL lock has been added.
+* LED indicators of active SMA inputs/outputs
 
 # GA_Flasher can be used to upload compiled firmware from "Firmware Compiled (.HEX File)" folder: https://github.com/afch/GA_Flasher
 
