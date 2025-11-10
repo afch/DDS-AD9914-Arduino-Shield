@@ -34,7 +34,8 @@
 // Constructor function; initializes communication pinouts
 AD9914::AD9914(byte ssPin, byte resetPin, byte updatePin, byte ps0, byte ps1, byte ps2, byte osk) //Master_reset pin?
 {
-    RESOLUTION  = 4294967296.0;
+    //RESOLUTION  = 4294967296.0;
+    RESOLUTION  = 4294967296ULL;
     _ssPin = ssPin;
     _resetPin = resetPin;
     _updatePin = updatePin;
@@ -118,6 +119,9 @@ void AD9914::initialize(unsigned long refClk, uint8_t N){
   AD9914::writeRegister(registerInfo2, data2);
   AD9914::update();
 
+  // Serial.print("N=");
+  // Serial.println(N);
+
   if (N) {
     byte registerInfo3[] = { CFR3, 4 };
     byte data3[] = { 0x00,  // bilo 0x00
@@ -133,8 +137,9 @@ void AD9914::initialize(unsigned long refClk, uint8_t N){
   } else 
   {
     byte registerInfo33[] = { CFR3, 4 };
-    byte data33[] = { 0, 0, 0, 0 };  //[31:0]
+    byte data33[] = { 0, 0, 0, Lock_detect_enable };  //[31:0]
     AD9914::writeRegister(registerInfo33, data33);
+    AD9914::update();
   }
 
   AD9914::dacCalibrate();  //Calibrate DAC !!!!!!!!!!!!!!!!!!!!!!!ALEC
@@ -184,7 +189,9 @@ void AD9914::setFreq(unsigned long freq, byte profile){
    
     // set _freq and _ftw variables
     _freq[profile] = freq;
-    _ftw[profile] = round(freq * RESOLUTION / _refClk) ;
+    //_ftw[profile] = round(freq * RESOLUTION / _refClk) ;
+    uint128_t prod = mul64x64(RESOLUTION, freq);
+    _ftw[profile] = div128by32(prod, _refClk);
 
     // divide up ftw into four bytes
     byte ftw[] = { lowByte(_ftw[profile] >> 24), lowByte(_ftw[profile] >> 16), lowByte(_ftw[profile] >> 8), lowByte(_ftw[profile])};
@@ -540,4 +547,42 @@ void AD9914::writeAmp(long ampScaleFactor, byte profile){
   
   AD9914::update();
   
+}
+
+uint128_t mul64x64(uint64_t a, uint64_t b) {
+  uint64_t a_lo = (uint32_t)a;
+  uint64_t a_hi = a >> 32;
+  uint64_t b_lo = (uint32_t)b;
+  uint64_t b_hi = b >> 32;
+
+  uint64_t lo_lo = a_lo * b_lo;
+  uint64_t hi_lo = a_hi * b_lo;
+  uint64_t lo_hi = a_lo * b_hi;
+  uint64_t hi_hi = a_hi * b_hi;
+
+  uint64_t carry = ((lo_lo >> 32) + (hi_lo & 0xFFFFFFFF) + (lo_hi & 0xFFFFFFFF)) >> 32;
+
+  uint128_t result;
+  result.lo = lo_lo + ((hi_lo & 0xFFFFFFFF) << 32) + ((lo_hi & 0xFFFFFFFF) << 32);
+  result.hi = hi_hi + (hi_lo >> 32) + (lo_hi >> 32) + carry;
+  return result;
+}
+
+uint64_t div128by32(uint128_t x, uint32_t d) {
+  uint64_t remainder = 0;
+  uint64_t result_hi = 0, result_lo = 0;
+
+  remainder = x.hi % d;
+  result_hi = x.hi / d;
+
+  uint64_t combined = (remainder << 32) | (x.lo >> 32);
+  uint64_t part1 = combined / d;
+  remainder = combined % d;
+
+  uint64_t combined2 = (remainder << 32) | (uint32_t)x.lo;
+  uint64_t part2 = combined2 / d;
+
+  result_lo = (part1 << 32) | (part2 & 0xFFFFFFFF);
+
+  return result_lo;
 }

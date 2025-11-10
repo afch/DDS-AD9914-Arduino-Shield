@@ -16,7 +16,10 @@
 
 #include <GParser.h>
 
-#define FIRMWAREVERSION 0.89
+#define FIRMWAREVERSION 0.90
+//v0.90 31.01.2025 //Более точное вычисление значения FTW
+                   //Исправлено считывание настроек тактирования из EEPROM
+                   //Добавлены вывод в последовательный порт предупреждающего сообщения о несоотвтествии напряжения блока питания
 //v0.89 26.12.2024 //доработано переключения источников тактирования: добавлен внешнй EXT_TCXO_OCXO, 
                    //добавлено управление индикатором защелки PLL
 //v0.88 26.12.2024 //включение и выключение кнопкой
@@ -86,7 +89,7 @@ void setup() {
 
    Serial.begin(115200);
 
-  Serial.println(F("DDS AD9914 Arduino Shield by GRA & AFCH. (gra-afch.com)"));
+  Serial.println(F("DDS AD9914 HW: v3.x Arduino Shield by GRA & AFCH. (gra-afch.com)"));
   Serial.print(F("Firmware v.:"));
   Serial.println(FIRMWAREVERSION);
 
@@ -99,6 +102,7 @@ void setup() {
         pinMode(EXT_PWR_DWN, OUTPUT);
         digitalWrite(EXT_PWR_DWN, HIGH);
         displayPowerWarning();
+        Serial.println("Use Only 12V DC Power Supply!");
         while(1);
       }
 
@@ -129,9 +133,9 @@ void setup() {
   digitalWrite(EXTERANL_SRC_PATH_PIN, LOW);
   //************************
   
+  // LoadClockSettings();
   LoadMainSettings();
-  LoadClockSettings();
-
+  
   ui32CurrentOutputFreq=GetFreq();
 
   curItem = &GHZ;
@@ -187,6 +191,9 @@ void setup() {
 
   pinMode(OSKPIN, OUTPUT);
   digitalWrite(OSKPIN, HIGH);
+
+  LoadClockSettings();
+  //LoadMainSettings();
 }
 
 bool MenuEditMode=false;
@@ -408,6 +415,9 @@ bool isPLLLocked()
   lastTimeReading = millis();
 
   PLLLocked = bitRead(DDS.readRegister4Bytes(USR0), PLL_LOCK);
+
+  // Serial.print("PLL_LOCK=");
+  // Serial.println(PLLLocked);
 
   return PLLLocked;
 }

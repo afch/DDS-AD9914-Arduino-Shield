@@ -338,6 +338,17 @@ void LoadClockSettings()
       ClockSrc.nextItem=&ExtClockFreqGHz;
       CoreClockSave.prevItem=&ExtClockFreqMHz;
     }
+  
+  //*********31.10.2025
+  if ((ClockSrc.value == TCXO_OCXO) || (ClockSrc.value == EXT_TCXO_OCXO)) DDS.initialize(DDSCoreClock.GetDDSCoreClock(), DDSCoreClock.value);
+        else DDS.initialize(DDSCoreClock.GetDDSCoreClock(), 0);
+
+      DDS.enableProfileMode();
+      DDS.enableOSK();
+
+      DDS.setFreq(GetFreq(),0);
+            
+      DDS.setAmpdB(0,0);
 }
 
 void SaveClockSettings()
